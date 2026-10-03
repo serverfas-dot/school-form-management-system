@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./school-logo.png" />
+    <link rel="apple-touch-icon" href="./school-logo.png" />
+    <meta name="theme-color" content="#25288f" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="preload" href="/fonts/faruma.ttf" as="font" type="font/truetype" crossorigin="anonymous">
+    <style>
+      @font-face {
+        font-family: 'Faruma';
+        src: url('/fonts/faruma.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+      }
+
+      /* FORCE Faruma on everything */
+      * {
+        font-family: 'Faruma', serif !important;
+      }
+    </style>
+    <title>School Form Management System</title>
+    <meta name="description" content="Faafu Atoll School's digital form management system for submitting and managing school requests." />
+    <meta property="og:title" content="Faafu Atoll School Forms" />
+    <meta property="og:description" content="Faafu Atoll School's digital form management system for submitting and managing school requests." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Faafu Atoll School" />
+    <meta property="og:image" content="./school-logo.png" />
+    <meta property="og:image:alt" content="Faafu Atoll School logo" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Faafu Atoll School Forms" />
+    <meta name="twitter:description" content="Faafu Atoll School's digital form management system for submitting and managing school requests." />
+    <meta name="twitter:image" content="./school-logo.png" />
+    <meta name="twitter:image:alt" content="Faafu Atoll School logo" />
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      document.title = 'School Form Management System';
+      console.log('=== APP VERSION: 2.0 - Build Time: ' + new Date().toISOString() + ' ===');
+
+      if ('fonts' in document) {
+        var farumaFont = new FontFace('Faruma', 'url(/fonts/faruma.ttf)');
+        farumaFont.load().then(function(font) {
+          document.fonts.add(font);
+          console.log('Faruma loaded');
+
+          function forceFont() {
+            var all = document.querySelectorAll('*');
+            for (var i = 0; i < all.length; i++) {
+              all[i].style.fontFamily = 'Faruma, serif';
+            }
+          }
+
+          forceFont();
+          setInterval(forceFont, 100);
+
+          var obs = new MutationObserver(forceFont);
+          obs.observe(document.body, { childList: true, subtree: true });
+        }).catch(function(e) {
+          console.error('Font load error:', e);
+        });
+      }
+
+      window.addEventListener('error', function(e) {
+        console.error('Global error:', e.error);
+        document.getElementById('root').innerHTML = '<div style="padding: 20px; color: red; font-family: sans-serif;"><h1>Loading Error</h1><p>' + e.message + '</p><p>Check console for details</p></div>';
+      });
+      setTimeout(function() {
+        const root = document.getElementById('root');
+        if (root.innerHTML === 'Loading...') {
+          root.innerHTML = '<div style="padding: 20px; color: orange; font-family: sans-serif;"><h1>App Not Loading</h1><p>The application failed to initialize. Check the console for details.</p></div>';
+        }
+      }, 3000);
+    </script>
+  </body>
+</html>
