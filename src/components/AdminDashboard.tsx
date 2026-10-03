@@ -33,7 +33,7 @@ export default function AdminDashboard({ username, onLogout, onNavigateHome, onN
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <img
-                src="/school-logo.png"
+                src={`${import.meta.env.BASE_URL}school-logo.png`}
                 alt="Faafu Atoll School Logo"
                 className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
               />

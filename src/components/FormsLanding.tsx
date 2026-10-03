@@ -91,7 +91,7 @@ export default function FormsLanding({ onSelectForm, onNavigateHome, onNavigateA
               aria-label="Go to home"
             >
               <img
-                src="/school-logo.png"
+                src={`${import.meta.env.BASE_URL}school-logo.png`}
                 alt="Faafu Atoll School Logo"
                 className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-lg"
               />
